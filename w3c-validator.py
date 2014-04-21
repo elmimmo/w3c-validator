@@ -46,10 +46,10 @@ def validate(filename):
         # Upload file as multipart/form-data with POST.
         if filename.endswith('.css'):
             cmd = ('curl -sF "file=@%s;type=text/css" -F output=json -F warning=0 %s'
-                    % (quoted_filename, css_validator_url))
+                    % (filename, css_validator_url))
         else:
             cmd = ('curl -sF "uploaded_file=@%s;type=text/html" -F output=json %s'
-                    % (quoted_filename, html_validator_url))
+                    % (filename, html_validator_url))
     verbose(cmd)
     status,output = commands.getstatusoutput(cmd)
     if status != 0:
