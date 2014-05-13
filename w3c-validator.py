@@ -47,6 +47,9 @@ def validate(filename):
         if filename.endswith('.css'):
             cmd = ('curl -sF "file=@%s;type=text/css" -F output=json -F warning=0 %s'
                     % (filename, css_validator_url))
+        if filename.endswith('.xhtml'):
+            cmd = ('curl -sF "uploaded_file=@%s;type=application/xhtml+xml" -F output=json %s'
+                    % (filename, html_validator_url))
         else:
             cmd = ('curl -sF "uploaded_file=@%s;type=text/html" -F output=json %s'
                     % (filename, html_validator_url))
